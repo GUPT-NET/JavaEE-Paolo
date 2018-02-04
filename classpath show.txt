@@ -1,0 +1,14 @@
+java -classpath user class Test
+
+
+1 Java 自己的基本API （java bootstrap class)  java.lang.String(jdk)  C:\Program Files\Java\jdk1.7.0_45\jre\lib\rt.jar  
+2 ext class    C:\Program Files\Java\jdk1.7.0_45\jre\lib\ext\*.jar
+3 user class   java.lang.String(user)  commons.lang3.jar (StringUtils)  Test1_2.class
+
+
+
+
+
+1 Java 自己的基本API （java bootstrap class)  java.lang.String(user) Test1_2.class  java.lang.String(Jdk)
+2 ext class    C:\Program Files\Java\jdk1.7.0_45\jre\lib\ext\*.jar
+3 user class   commons.lang3.jar (StringUtils)
