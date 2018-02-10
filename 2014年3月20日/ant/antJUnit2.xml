@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<project name="antJUnit2" default="main" basedir=".">
+	<!--源码目录-->
+	<property name="src.dir" location="src" />
+	<!--编译后存放.class的目录-->
+	<property name="build.dir" location="bin" />
+
+	<!-- JUnit测试专用变量 -->
+	<property name="test.dir" location="src" />
+	<property name="test.report.dir" location="testreport" />
+
+	<!-- 定义类路径，包括junit.jar和编译产生的所有class-->
+	<path id="junit.class.path">
+		<pathelement location="../Lib/junit-4.10.jar" />
+		<pathelement location="${build.dir}" />
+	</path>
+
+	<!-- 删除当前目录 -->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${test.report.dir}" />
+	</target>
+
+	<!-- 创建新目录 -->
+	<target name="makedir">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${test.report.dir}" />
+	</target>
+
+	<!-- 编译（指定类路径） -->
+	<target name="compile" depends="clean, makedir">
+		<javac srcdir="${src.dir}" destdir="${build.dir}">
+			<classpath refid="junit.class.path" />
+		</javac>
+
+	</target>
+
+	<!-- 运行JUnit测试类 -->
+	<target name="junit" depends="compile">
+		<!--属性printsummary=on表示把每个测试类的结果打印输出到控制台-->
+		<!--属性fork=true表示用另一个独立的vm来运行junit-->
+		<!--haltonfailure=yes表示出错时会中断ant-->
+		<junit printsummary="on" fork="true" haltonfailure="yes">
+			<classpath refid="junit.class.path" />
+			<!--指定测试结果输出格式为plain文本-->
+			<formatter type="plain" />
+			<batchtest todir="${test.report.dir}">
+				<fileset dir="${src.dir}">
+					<include name="**/*Test*.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="main" depends="compile, junit">
+		<description>Main target</description>
+	</target>
+
+</project>

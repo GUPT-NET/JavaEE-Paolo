@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<project name="antTest2" default="main" basedir=".">
+	<!--源码目录-->
+	<property name="src.dir" location="src" />
+	<!--编译后存放.class的目录-->
+	<property name="build.dir" location="bin" />
+	<!--发布目录-->
+	<property name="dist.dir" location="dist" />
+	<!--文档目录-->
+	<property name="docs.dir" location="docs" />
+
+	<!-- 删除当前的 build, docs和dist 目录-->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${docs.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<!-- 创建新的build, docs和dist目录-->
+	<target name="makedir">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${docs.dir}" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<!-- 编译 -->
+	<target name="compile" depends="clean, makedir">
+		<javac srcdir="${src.dir}" destdir="${build.dir}">
+		</javac>
+
+	</target>
+
+	<!-- 创建Javadoc -->
+	<target name="docs" depends="compile">
+		<javadoc packagenames="src" sourcepath="${src.dir}" destdir="${docs.dir}">
+			<!-- Define which files / directory should get included, we include all -->
+			<fileset dir="${src.dir}">
+				<include name="**" />
+			</fileset>
+		</javadoc>
+	</target>
+
+	<!--Creates the deployable jar file  -->
+	<target name="jar" depends="compile">
+		<jar destfile="${dist.dir}\my-math.jar" basedir="${build.dir}">
+			<manifest>
+				<attribute name="Main-Class" value="net.gupt.cs.jee.ant.MyMath" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="main" depends="compile, jar, docs">
+		<description>Main target</description>
+	</target>
+
+</project>

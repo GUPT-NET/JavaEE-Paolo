@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<project name="antJUnit1" default="main" basedir=".">
+	<!--源码目录-->
+	<property name="src.dir" location="src" />
+	<!--编译后存放.class的目录-->
+	<property name="build.dir" location="bin" />
+
+	<!-- JUnit测试专用变量 -->
+	<property name="test.dir" location="src" />
+	<property name="test.report.dir" location="testreport" />
+
+	<!-- 定义类路径，包括junit.jar和编译产生的所有class-->
+	<path id="junit.class.path">
+		<pathelement location="../Lib/junit-4.10.jar" />
+		<pathelement location="${build.dir}" />
+	</path>
+
+	<!-- 删除当前目录 -->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${test.report.dir}" />
+	</target>
+
+	<!-- 创建新目录 -->
+	<target name="makedir">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${test.report.dir}" />
+	</target>
+
+	<!-- 编译（指定类路径） -->
+	<target name="compile" depends="clean, makedir">
+		<javac srcdir="${src.dir}" destdir="${build.dir}">
+			<classpath refid="junit.class.path" />
+		</javac>
+
+	</target>
+
+	<!-- 运行JUnit测试类 -->
+	<target name="junit" depends="compile">
+		<junit>
+			<classpath refid="junit.class.path" />
+			<!--指定测试结果输出格式为xml-->
+			<formatter type="xml" />
+			<!--运行一组JUnit测试类，并指定测试结果的输出目录-->
+			<batchtest todir="${test.report.dir}">
+				<!--指定文件的来源-->
+				<fileset dir="${src.dir}">
+					<!-- 包括当前目录及其所有子目录下的、文件名带有Text且后缀为java的所有文件-->
+					<!-- **表示当前目录及其所有子目录-->
+					<include name="**/*Test*.java" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+	<target name="main" depends="compile, junit">
+		<description>Main target</description>
+	</target>
+
+</project>

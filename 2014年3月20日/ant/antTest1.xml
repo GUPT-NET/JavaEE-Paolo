@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project name="antTest1" default="main" basedir=".">
+	<!--源码目录-->
+	<property name="src.dir" location="src" />
+	<!--编译后存放.class的目录-->
+	<property name="build.dir" location="bin" />
+
+	<!-- 删除当前的 build目录-->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${docs.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<!-- 创建新的build目录-->
+	<target name="makedir">
+		<mkdir dir="${build.dir}" />
+
+	</target>
+
+	<!-- 编译 -->
+	<target name="compile" depends="clean, makedir">
+		<javac srcdir="${src.dir}" destdir="${build.dir}">
+		</javac>
+
+	</target>
+
+	<target name="main" depends="compile">
+		<description>Main target</description>
+	</target>
+
+</project>

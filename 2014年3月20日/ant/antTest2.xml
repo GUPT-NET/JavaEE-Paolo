@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<project name="antTest2" default="main" basedir=".">
+	<!--源码目录-->
+	<property name="src.dir" location="src" />
+	<!--编译后存放.class的目录-->
+	<property name="build.dir" location="bin" />
+	<!--发布目录-->
+	<property name="dist.dir" location="dist" />
+
+	<!-- 删除当前的 build, dist目录-->
+	<target name="clean">
+		<delete dir="${build.dir}" />
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<!-- 创建新的build, dist目录-->
+	<target name="makedir">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+	</target>
+
+	<!-- 编译 -->
+	<target name="compile" depends="clean, makedir">
+		<!--ant1.8后引入属性，includeantruntime="false"表示不在类路径中导入ant的runtime包-->
+		<javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+		</javac>
+
+	</target>
+
+
+	<!--创建工具包 jar file  -->
+	<target name="jar" depends="compile">
+		<jar destfile="${dist.dir}\my-math.jar" basedir="${build.dir}">
+		</jar>
+	</target>
+
+	<target name="main" depends="compile, jar">
+		<description>Main target</description>
+	</target>
+
+</project>
