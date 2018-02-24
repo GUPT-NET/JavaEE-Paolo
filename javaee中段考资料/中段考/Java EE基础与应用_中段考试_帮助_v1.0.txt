@@ -1,0 +1,39 @@
+1. 安装tomcat。
+
+可参考/帮助文档和视频/web应用开发/apache-tomcat-7.0.52_Window Service Installer版使用指南v1.0.docx
+tomcat安装文件: /工具/apache-tomcat-7.0.52_Window Service Installer.exe
+
+2. 将tomcat配入eclipse。
+
+可参考/帮助文档和视频/web应用开发/在eclipse中将web应用部署到tomcat7.0（放到tomcat安装目录）v1.0.avi）
+
+3. 将myface6s.war导入eclipse。
+
+可参考/帮助文档和视频/web应用开发/在eclipse中创建动态web项目并将其以war包格式导入导出v1.0.avi
+
+若myface6s找不到应用服务器的运行环境（targeted runtime），可参考/帮助文档和视频/web应用开发/在eclipse中给已建动态web项目指定应用服务器运行环境（targeted runtimes）v1.0.avi
+
+若要解决中文乱码问题，可参考/myface/myface中文乱码问题的解决v2.0.docx（修改server.xml即可，因为解决中文乱码的代码已写入myface）
+
+4. 创建Servlet
+
+可参考/帮助文档和视频/web应用开发/在eclipse中创建Servlet类v1.0.avi
+
+5. 创建普通java类
+
+可参考/帮助文档和视频/web应用开发/在eclipse中创建基于JDK的java项目，并编译和运行java程序v1.0.avi
+
+6. 创建JUnit测试类
+
+可参考/帮助文档和视频/JUnit/在eclipse中导入junit包并能看源码v1.0.avi和在eclipse中创建并运行和调试JUnit Test类v1.0.avi，或者/帮助文档和视频/JUnit/JUnit Guide v1.1.docx
+
+JUnit和其他包在/工具/Lib/下
+
+7. 使用MySQL
+
+可参考/帮助文档和视频/MySQL/MySQL攻略v1.0.docx
+MySQL安装，可参考/帮助文档和视频/MySQL/mysql-installer-community-5.6.10.1 installation guide.docx
+
+创建表格的脚本，可参考/myface/CreateSinger.sql
+
+MySQL JDBC驱动包：/工具/mysql-connector-java-5.1.23-bin.jar
